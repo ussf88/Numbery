@@ -1,0 +1,28 @@
+.number-container{
+
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.go-back-button{
+    position: absolute;
+    bottom: 20vh;
+}
+.number-text{
+
+    text-align: center;
+    color: aliceblue;
+    width: 100%;
+    font-size: 30px;
+
+}
+.number-text-container{
+    width: 100%;
+    height: 50px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
