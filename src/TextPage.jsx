@@ -18,6 +18,7 @@ export default function TextPage() {
 
   const generateRandomNumber = () => {
     const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    while(randomNum==number) randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
     setNumber(randomNum);
   };
   const handleClick = (value) => {
