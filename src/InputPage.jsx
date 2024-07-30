@@ -5,7 +5,7 @@ import './input.css'
 export default function InputPage() {
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
-  const [showdigits, setshowdigits] = useState(true)
+  const [showdigits, setshowdigits] = useState(false)
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
