@@ -11,8 +11,23 @@ export default function TextPage() {
   const [number, setNumber] = useState(null);
   const [result, setResult] = useState('');
   const [resultClassName, setresultClassName] = useState('result')
-
+  const [count, setCount] = useState(0);
+  const dateKey = 'text-date';
+  const countKey = 'text-count';
   useEffect(() => {
+     // Load data from localStorage
+     const storedDate = localStorage.getItem(dateKey);
+     const storedCount = localStorage.getItem(countKey);
+     const today = new Date().toLocaleDateString();
+
+     if (storedDate === today) {
+         setCount(parseInt(storedCount, 10) || 0);
+     } else {
+         // Reset the count if the date has changed
+         localStorage.setItem(dateKey, today);
+         localStorage.setItem(countKey, 0);
+         setCount(0);
+     }
     generateRandomNumber();
   }, []);
 
@@ -29,6 +44,9 @@ export default function TextPage() {
             generateRandomNumber();
             setResult('');
             setresultClassName('result');
+            const newCount = count  + 1;
+            setCount(c=>c+1);
+            localStorage.setItem(countKey,newCount);
         }else{
             speak(writtenNumber(number, { lang: "fr" }));
             setResult('');
@@ -76,6 +94,7 @@ const isCorrect = ()=> parseInt(result)==number;
       <button className="go-back-button" onClick={() => navigate("/")}>
         Go Back
       </button>
+      <div className="progress">Today's count: {count}</div>
     </div>
   );
 }

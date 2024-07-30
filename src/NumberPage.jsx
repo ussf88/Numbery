@@ -10,10 +10,25 @@ export default function NumberPage() {
     const max = parseInt(searchParams.get('max'));
     const [number, setNumber] = useState(null);
     const [showWritten, setShowWritten] = useState(false);
+    const [count, setCount] = useState(0);
+    const dateKey = 'number-date';
+  const countKey = 'number-count';
+  useEffect(() => {
+     // Load data from localStorage
+     const storedDate = localStorage.getItem(dateKey);
+     const storedCount = localStorage.getItem(countKey);
+     const today = new Date().toLocaleDateString();
 
-    useEffect(() => {
-        generateRandomNumber();
-    }, []);
+     if (storedDate === today) {
+         setCount(parseInt(storedCount, 10) || 0);
+     } else {
+         // Reset the count if the date has changed
+         localStorage.setItem(dateKey, today);
+         localStorage.setItem(countKey, 0);
+         setCount(0);
+     }
+    generateRandomNumber();
+  }, []);
 
     const generateRandomNumber = () => {
         const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -22,8 +37,12 @@ export default function NumberPage() {
     };
     const handleRevealClick = () => {
         if (showWritten) {
+
             generateRandomNumber();
         } else {
+            const newCount = count  + 1;
+            setCount(c=>c+1);
+            localStorage.setItem(countKey,newCount);
             setShowWritten(true);
             const writtenText = writtenNumber(number, { lang: 'fr' });
             speak(writtenText);
@@ -38,6 +57,8 @@ export default function NumberPage() {
                     {showWritten ? 'Next' : 'Reveal'}
                 </button>
             <button className="go-back-button" onClick={() => navigate('/')}>Go Back</button>
+            <div className="progress">Today's count: {count}</div>
         </div>
+        
     );
 }

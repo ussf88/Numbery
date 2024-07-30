@@ -80,3 +80,9 @@ button:active {
 .wrong{
     border-bottom: 5px solid red;
 }
+.progress{
+    position: absolute;
+    bottom: 5vh;
+    right: 10vw;
+    color: white;
+}
