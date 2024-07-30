@@ -9,7 +9,7 @@
 
 .go-back-button{
     position: absolute;
-    bottom: 20vh;
+    bottom: 10vh;
 }
 .number-text{
 
@@ -25,4 +25,58 @@
 
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 10px;
+}
+.numpad button {
+    font-size: 24px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+.numpad button:focus {
+    outline: none; /* Ensure no outline on focus */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Optional: Add custom focus style */
+}
+.numpad 
+button:active {
+    background-color: white;
+    color: #2196F3;
+}
+.number {
+    border-radius: 50%;
+}
+
+.action {
+    border-radius: 10px;
+}
+.result {
+    font-size: 24px;
+    color: white;
+    background-color: transparent;
+    border-bottom: 2px solid white;
+    width: 310px; /* Adjust based on the numpad width */
+    margin-bottom: 20px;
+    text-align: right;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 50px;
+}
+.wrong{
+    border-bottom: 5px solid red;
 }
