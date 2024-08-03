@@ -1,23 +1,28 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './input.css'
+import './input.css';
+import LanguageSelector from "./LanguageSelector";
 export default function InputPage() {
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
-  const [showdigits, setshowdigits] = useState(false)
+  const [showdigits, setshowdigits] = useState(false);
+  const [langId, setLangId] = useState('fr');
+  const [langcode, setLangcode] = useState('fr-FR');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    showdigits ? navigate(`/number?min=${min}&max=${max}`) : navigate(`/text?min=${min}&max=${max}`) ;
+    showdigits ? navigate(`/number?langId=${langId}&langCode=${langcode}&min=${min}&max=${max}`) : navigate(`/text?langId=${langId}&langCode=${langcode}&min=${min}&max=${max}`) ;
   };
   const handleCheckboxChange = () => {
     setshowdigits(!showdigits);
   };
   return (
     <div className="input-container">
-      <h1>Enter Min and Max Values</h1>
+      <h1>Arqam</h1>
+      <LanguageSelector onLanguageSelect={(lang)=>{setLangId(lang.id);setLangcode(lang.code)}}/>
+      <h2>Enter Min and Max Values</h2>
       <form onSubmit={handleSubmit} className="form">
         <div className="form__group field">
           <input value={min}

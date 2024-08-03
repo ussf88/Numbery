@@ -7,12 +7,13 @@
 }
 .input-container{
     
-    height: 100vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-top: 20%;
     align-items: center;
-
+    border: 5px solid red;
 }
 .input-container h1{
     margin-bottom: 20%;
@@ -20,6 +21,14 @@
     margin-right: 20px;
     color: whitesmoke;
     text-align: center;
+}
+.input-container h2{
+  margin-bottom: 20%;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: whitesmoke;
+  text-align: center;
+  
 }
 body{
 
@@ -35,12 +44,11 @@ background: radial-gradient(circle, rgba(2,0,36,0.8795167725293243) 0%, rgba(23,
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .form-div{
     margin-top: 10px;
-
-
 }
 
 

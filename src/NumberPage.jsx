@@ -8,6 +8,8 @@ export default function NumberPage() {
     const navigate = useNavigate();
     const min = parseInt(searchParams.get('min'));
     const max = parseInt(searchParams.get('max'));
+    const langId = searchParams.get("langId") ?? 'en';
+    const langCode = searchParams.get("langCode") ?? 'en-US';
     const [number, setNumber] = useState(null);
     const [showWritten, setShowWritten] = useState(false);
     const [count, setCount] = useState(0);
@@ -44,15 +46,15 @@ export default function NumberPage() {
             setCount(c=>c+1);
             localStorage.setItem(countKey,newCount);
             setShowWritten(true);
-            const writtenText = writtenNumber(number, { lang: 'fr' });
-            speak(writtenText);
+            const writtenText = writtenNumber(number, { lang: langId });
+            speak(writtenText,langCode);
         }
     };
     return (
         <div className="number-container">
                 <h1>{number}</h1>
                 
-                <div className='number-text-container'>{showWritten && <p className='number-text'>{writtenNumber(number, { lang: 'fr' })}</p>}</div>
+                <div className='number-text-container'>{showWritten && <p className='number-text'>{writtenNumber(number, { lang: langId })}</p>}</div>
                 <button onClick={handleRevealClick}>
                     {showWritten ? 'Next' : 'Reveal'}
                 </button>

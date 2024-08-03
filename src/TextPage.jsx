@@ -8,6 +8,8 @@ export default function TextPage() {
   const navigate = useNavigate();
   const min = parseInt(searchParams.get("min"));
   const max = parseInt(searchParams.get("max"));
+  const langId = searchParams.get("langId") ?? 'en';
+  const langCode = searchParams.get("langCode") ?? 'en-US';
   const [number, setNumber] = useState(null);
   const [result, setResult] = useState('');
   const [resultClassName, setresultClassName] = useState('result')
@@ -48,7 +50,7 @@ export default function TextPage() {
             setCount(c=>c+1);
             localStorage.setItem(countKey,newCount);
         }else{
-            speak(writtenNumber(number, { lang: "fr" }));
+            speak(writtenNumber(number, { lang: langId }),langCode);
             setResult('');
            setresultClassName('result'+(result !='' && result!=null? ' wrong': ''))
         }
@@ -59,7 +61,7 @@ export default function TextPage() {
 };
 const isCorrect = ()=> parseInt(result)==number;
   useEffect(() => {
-    if (number != null) speak(writtenNumber(number, { lang: "fr" }));
+    if (number != null) speak(writtenNumber(number, { lang: langId }),langCode);
   }, [number]);
 
   return (
@@ -70,7 +72,7 @@ const isCorrect = ()=> parseInt(result)==number;
       <div className={resultClassName} id="result">{result}</div>
 
    
-      <div class="numpad">
+      <div className="numpad">
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
                     <button
                         key={num}
